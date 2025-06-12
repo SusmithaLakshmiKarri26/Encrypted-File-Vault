@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About | Encrypted File Vault</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='optimise.css') }}">
+
+    <style>
+      .footer {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        color: #ccc;
+        font-size: 0.9rem;
+        padding: 15px 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 2;
+      }
+
+      .container {
+        padding: 100px 30px 100px;
+        max-width: 960px;
+        margin: 0 auto;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        color: #ffffff;
+        z-index: 1;
+        position: relative;
+      }
+
+      h1, h2 {
+        color: #00b894;
+        margin-bottom: 15px;
+      }
+
+      ol, ul {
+        margin-left: 20px;
+        text-align: left;
+      }
+
+      p, li {
+        line-height: 1.6;
+      }
+    </style>
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+
+    
+
+    <header class="navbar">
+      <div class="logo"><a href="#">🔐 Encrypted File Vault</a></div>
+      <nav class="nav-links">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="#">About</a>
+        
+      </nav>
+    </header>
+
+    <div class="container">
+        <h1>About our Website</h1>
+        <p>
+            <strong>Encrypted File Vault</strong> is a secure and user-friendly web application designed to encrypt and decrypt your text files using powerful cryptographic algorithms.
+            Whether for personal, academic, or professional use, our platform ensures your data remains private and protected.
+        </p>
+
+        <h2>🚀 How to Use</h2>
+        <ol>
+            <li><strong>Register:</strong> Create an account with your name, email, and password.</li>
+            <li><strong>Log In:</strong> Sign in with your credentials. A One-Time Password (OTP) will be sent to your email.</li>
+            <li><strong>Enter the OTP:</strong> Complete the login process securely.</li>
+            <li><strong>Upload a Text File:</strong> Choose the file you wish to encrypt or decrypt.</li>
+            <li><strong>Choose an Operation:</strong>
+                <ul>
+                    <li><strong>Encrypt:</strong> File will be securely encrypted and stored.</li>
+                    <li><strong>Decrypt:</strong> Decrypt previously encrypted files with valid credentials.</li>
+                </ul>
+            </li>
+            <li><strong>Download the Result:</strong> Optionally upload to linked cloud storage.</li>
+        </ol>
+
+        <h2>🎯 Our Mission</h2>
+        <p>
+            We aim to make strong file security accessible to everyone — no technical knowledge required. Encrypted File Vault helps protect what matters most in a digital-first world.
+        </p>
+    </div>
+
+    <footer class="footer">
+        <h2>📧 Contact Us</h2>
+        <p>
+            For support or inquiries, reach out to us at:<br>
+            <a href="mailto:helpfromencryptedfilevault@gmail.com">helpfromencryptedfilevault@gmail.com</a>
+        </p>
+    </footer>
+
+    
+      <script src="{{ url_for('static', filename='bg_animation.js') }}"></script>
+
+    
+</body>
+</html>

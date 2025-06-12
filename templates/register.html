@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register</title>
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" /> -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='optimise.css') }}" />
+  <script>
+  function validatePasswords(event) {
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirm_password").value;
+
+    if (password !== confirmPassword) {
+      event.preventDefault(); // Prevent form submission
+      alert("Passwords do not match!");
+      return false;
+    }
+    return true;
+  }
+
+  function toggleVisibility(id) {
+    const field = document.getElementById(id);
+    field.type = field.type === "password" ? "text" : "password";
+  }
+</script>
+</head>
+<body>
+  <canvas id="matrixCanvas"></canvas>
+  <header class="navbar">
+    <div class="logo"><a href="#">🔐 Encrypted File Vault</a></div>
+    <nav class="nav-links">
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('login')}}">Encrypt</a>
+      <a href="{{ url_for('login') }}">Decrypt</a>
+      <a href="{{url_for('about')}}">About</a>
+      <a href="{{ url_for('login') }}">Login</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="box">
+      <h2>Register</h2>
+      <form action="{{ url_for('register') }}" method="POST" onsubmit="return validatePasswords(event)">
+        <input type="text" name="fullname" placeholder="Full Name" required />
+        <input type="email" name="email" placeholder="Email Address" required />
+        <input type="text" name="username" placeholder="Username" required />
+
+        <div class="input-container">
+  <input type="password" name="password" id="password" placeholder="Password" required />
+  <span class="toggle-password" onclick="toggleVisibility('password')">👁</span>
+</div>
+
+<div class="input-container">
+  <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required />
+  <span class="toggle-password" onclick="toggleVisibility('confirm_password')">👁</span>
+</div>
+        <button type="submit">Register</button>
+      </form>
+
+      <!-- Flashed messages display -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <p class="{{ category }}">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='bg_animation.js') }}"></script>
+
+</body>
+</html>

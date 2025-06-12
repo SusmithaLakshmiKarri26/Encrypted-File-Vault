@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Encrypted File Vault</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel = "stylesheet" href="{{ url_for('static', filename='optimise.css') }}">
+    
+</head>
+<body>
+
+  <canvas id="matrixCanvas"></canvas>
+
+  <header class="navbar">
+    <div class="logo"><a href="#">🔐 Encrypted File Vault</a></div>
+    <nav class="nav-links">
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('encrypt')}}">Encrypt</a>
+      <a href="{{ url_for('decrypt') }}">Decrypt</a>
+      <a href="{{ url_for('logout') }}" onclick="return confirmLogout()">Logout</a>
+
+
+    </nav>
+  </header>
+  <div class="container">
+    
+      <h2 class="title">Welcome to Encrypted File Vault, {{username}}!!!</h1>
+      <div class="buttons">
+      <a href="{{ url_for('encrypt') }}" class="btn">Encrypt File</a>
+      <a href="{{ url_for('decrypt') }}" class="btn">Decrypt File</a>
+    </div>
+    
+  </div>
+
+  <script src="{{ url_for('static', filename='bg_animation.js') }}"></script>
+
+</body>
+</html>

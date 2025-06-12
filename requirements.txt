@@ -1,0 +1,8 @@
+Flask
+python-dotenv
+cloudinary
+pycryptodome
+requests
+Flask-Mail
+itsdangerous
+gunicorn

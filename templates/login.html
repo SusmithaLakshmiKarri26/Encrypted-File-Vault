@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" /> -->
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='optimise.css') }}" />
+  <script>
+    function toggleVisibility(id) {
+    const field = document.getElementById(id);
+    field.type = field.type === "password" ? "text" : "password";
+  }
+  </script>
+  <style>
+    .navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00ff99;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+  
+  </style>
+</head>
+<body>
+  
+  <canvas id="matrixCanvas"></canvas>
+  <header class="navbar">
+    <div class="logo"><a href="#">🔐 Encrypted File Vault</a></div>
+    <nav class="nav-links">
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('login')}}">Encrypt</a>
+    <a href="{{ url_for('login') }}">Decrypt</a>
+    <a href="{{url_for('about')}}">About</a>
+    <a href="#">Login</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="box">
+      <h1>Login</h1>
+      <form method="POST" action="{{ url_for('login') }}">
+        <input type="text" name="username" placeholder="Username" required autofocus />
+        <div class="input-container">
+          <input type="password" name="password" id="password" placeholder="Password" required />
+          <span class="toggle-password" onclick="toggleVisibility('password')">👁</span>
+        </div> 
+        <button type="submit">Login</button>
+        <p><a href="{{ url_for('forgot_password') }}">Forgot Password?</a></p>
+      </form>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% set last = messages[-1] %}
+    <div class="flash {{ last[0] }}">{{ last[1] }}</div>
+  {% endif %}
+{% endwith %}
+
+
+      <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='bg_animation.js') }}"></script>
+</body>
+</html>

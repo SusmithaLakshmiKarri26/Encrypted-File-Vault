@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Decrypt File</title>
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" /> -->
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='optimise.css') }}" />
+  <style>
+  .logo {
+    display: inline-block;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 600;
+    font-size: 26px;
+    transition: transform 1.2s ease-in-out;
+    backface-visibility: hidden; /* optional: makes the flip look smoother */
+    perspective: 1000px; /* optional: enhances 3D effect */
+  }
+
+  .logo:hover {
+    transform: rotateY(360deg);
+  }
+</style>
+</head>
+<body>
+  <canvas id="matrixCanvas"></canvas>
+  <header class="navbar">
+    <div class="logo"><a href="#">🔐 Encrypted File Vault</a></div>
+    <nav class="nav-links">
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('encrypt') }}">Encrypt</a>
+    <a href="#">Decrypt</a>
+    <a href="{{url_for('about')}}">About</a>
+    <a href="{{ url_for('logout') }}" onclick="return confirmLogout()">Logout</a>
+
+
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="box">
+      <h2>Decrypt File</h2>
+      <form action="/decrypt" method="POST">
+        <input type="text" id="file_url" name="file_url" placeholder="Cloudinary File URL" required>
+        <input type="password" id="password" name="password" placeholder="Decryption Password" required>
+        <input type="text" id="username" name="username" placeholder="Your Username" required>
+        <input type="text" id="sender" name="sender" placeholder="Sender Username" required>
+        <button type="submit">Decrypt and Download</button>
+      </form>
+      <!-- <a href="/">Go Home</a> -->
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='bg_animation.js') }}"></script>
+  
+
+</body>
+</html>

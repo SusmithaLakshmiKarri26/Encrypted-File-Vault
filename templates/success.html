@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Success</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel = "stylesheet" href="{{ url_for('static', filename='optimise.css') }}">
+  <style>
+    .box p {
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    .url-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 10px 0;
+    }
+
+    .url-link {
+      background-color: #00b894;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .copy-btn {
+      background-color: #00b894;
+      border: none;
+      padding: 10px;
+      font-size: 20px;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .copy-btn:hover {
+      background-color: #019170;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"><a href="#">🔐 Encrypted File Vault</a></div>
+    <nav class="nav-links">
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('encrypt')}}">Encrypt</a>
+      <a href="{{ url_for('decrypt') }}">Decrypt</a>
+      <a href="{{url_for('about')}}">About</a>
+      <a href="{{ url_for('logout') }}" onclick="return confirmLogout()">Logout</a>
+
+    </nav>
+  </header>
+  
+  <canvas id="matrixCanvas"></canvas>
+  <div class="container">
+    <div class="box">
+      <h1>{{ message }}</h1>
+      {% if url %}
+        <p>Cloudinary URL:</p>
+        <div class="url-wrapper">
+          <a class="url-link" href="{{ url }}" target="_blank">{{ url }}</a>
+          <button class="copy-btn" data-url="{{ url }}" onclick="copyToClipboard(this)">📋</button>
+        </div>
+      {% endif %}
+      {% if show_button %}
+        <a href="/decrypt">Decrypt File</a>
+      {% endif %}
+      <!-- <a href="/">Go Home</a> -->
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='bg_animation.js') }}"></script>
+  <script>
+function copyToClipboard(button) {
+  const url = button.getAttribute('data-url');
+  navigator.clipboard.writeText(url).then(() => {
+    button.innerText = '✅';
+    setTimeout(() => button.innerText = '📋', 1500);
+  }).catch(err => {
+    console.error('Copy failed:', err);
+  });
+}
+
+</script>
+</body>
+</html>
